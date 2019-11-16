@@ -1,24 +1,24 @@
 <script>
-import Building from '../../animation/building.js'
+import Building from '../../model/animation/building.js'
 
 export default {
     inject: ['provider'],
     props: {
         size: {
             type: Number,
-            default: 0
-        }
+            default: 0,
+
+        },
+        building: Building
     },
     data() {
         return {
-            building: new Building()
         }
     },
     render() {
         if(!this.provider.context) return null;
         const ctx = this.provider.context;
-        console.log(ctx);
-        ctx.rect(this.building.w, this.building.h, this.size, this.size);
+        ctx.rect(0, 0, this.building.w, this.building.h);
         ctx.fillStyle = '#F00'
         ctx.fill();
         return null;
