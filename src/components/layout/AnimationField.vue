@@ -24,6 +24,7 @@ export default {
       this.provider.context = this.$refs['animation-canvas'].getContext('2d');
       this.$refs['animation-canvas'].width = this.$refs['animation-canvas'].parentElement.clientWidth;
       this.$refs['animation-canvas'].height = this.$refs['animation-canvas'].parentElement.clientHeight;
+
   }
 };
 
