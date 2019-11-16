@@ -40,3 +40,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.page-wrapper {
+    height: 100%;
+}
+</style>
