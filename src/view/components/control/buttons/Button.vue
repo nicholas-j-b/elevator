@@ -5,8 +5,6 @@
 </template>
 
 <script>
-//import MenuController from '../../../controller/menu_controller.js'
-
 export default {
     name: 'Button',
     props: {

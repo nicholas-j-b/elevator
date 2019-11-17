@@ -5,13 +5,13 @@
     ></Title>
     
     <Menu
-        :building="building"
     ></Menu>
 
     <animation-field><Body
-    :size="size"
-    :building="building"
+        :size="size"
     ></Body></animation-field>
+
+    <button @click="click()">debug</button>
 </div>
 </template>
 
@@ -20,7 +20,6 @@ import Title from './Title.vue'
 import AnimationField from './AnimationField.vue'
 import Body from './Body.vue'
 import Menu from './Menu.vue'
-import Building from '../../model/animation/building.js'
 
 export default {
     name: 'Page',
@@ -34,8 +33,11 @@ export default {
         return {
             title: "Elevator App",
             size: 3,
-
-            building: new Building(99)
+        }
+    },
+    methods: {
+        click() {
+            console.log('click');
         }
     }
 }
