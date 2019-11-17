@@ -5,12 +5,12 @@
     ></Title>
     
     <Menu
-        :building="building"
+        :buildingInstance="buildingInstance"
     ></Menu>
 
     <animation-field><Body
-    :size="size"
-    :building="building"
+        :size="size"
+        :buildingInstance="buildingInstance"
     ></Body></animation-field>
 </div>
 </template>
@@ -20,7 +20,6 @@ import Title from './Title.vue'
 import AnimationField from './AnimationField.vue'
 import Body from './Body.vue'
 import Menu from './Menu.vue'
-import Building from '../../model/animation/building.js'
 
 export default {
     name: 'Page',
@@ -35,7 +34,10 @@ export default {
             title: "Elevator App",
             size: 3,
 
-            building: new Building(99)
+            buildingInstance: {
+                building: null,
+                buildingView: null
+            }
         }
     }
 }

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Page from './components/layout/Page.vue'
+import Page from './view/components/layout/Page.vue'
 
 export default {
   name: 'app',

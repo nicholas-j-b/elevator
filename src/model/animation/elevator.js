@@ -2,16 +2,17 @@ import { Direction } from '../config/cfg.js';
 
 export default class Elevator {
     constructor(upperLimit, lowerLimit, maxSpace, completedPersons) {
+
+        console.log('debug point');
+
         this.upperLimit = upperLimit;
         this.lowerLimit = lowerLimit;
         this.maxSpace = maxSpace;
-        this.space = maxSpace;
-        this.numPeople = 0;
         this.persons = new Set(); // objects of { people, ...}
         this.currentFloor = 0;
-        this.desiredFloor = 0;
         this.currentDirection = Direction.UP;
         this.completedPersons = completedPersons;
+
     }
 
     load(personsToLoad) {
