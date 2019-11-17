@@ -12,17 +12,17 @@ export default class BuildingView {
                 renderVals.elevator.width, 
                 i * renderVals.elevator.spacing, 
                 renderVals.elevator.startHeight,
-                renderVals.elevator.colour[i % renderVals.elevator.colour.length]
+                renderVals.elevator.colour[i % renderVals.elevator.colour.length],
+                this.building.elevators[i]
                 ));
         }
-        console.log('my eleveators');
-        console.log(this.elevators);
     }
 
     render(ctx) {
+        ctx.fillStyle = '#FFFF00';
+        ctx.rect(0, 0, 1000, 100);
+        //ctx.fill();
         for (let elevator of this.elevators) {
-            console.log('elevator');
-            console.log(elevator);
             elevator.render(ctx);
         }
     }
