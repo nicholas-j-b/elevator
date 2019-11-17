@@ -5,13 +5,13 @@
     ></Title>
     
     <Menu
-        :buildingInstance="buildingInstance"
     ></Menu>
 
     <animation-field><Body
         :size="size"
-        :buildingInstance="buildingInstance"
     ></Body></animation-field>
+
+    <button @click="click()">debug</button>
 </div>
 </template>
 
@@ -33,11 +33,11 @@ export default {
         return {
             title: "Elevator App",
             size: 3,
-
-            buildingInstance: {
-                building: null,
-                buildingView: null
-            }
+        }
+    },
+    methods: {
+        click() {
+            console.log('click');
         }
     }
 }

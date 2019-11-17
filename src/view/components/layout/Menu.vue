@@ -13,15 +13,12 @@
 //import Building from "../../../model/animation/building.js";
 import Button from "../control/buttons/Button.vue";
 import MenuController from "../../../controller/menu_controller.js";
+import { EventBus } from '../../../main'
 
 export default {
   name: "Menu",
   components: {
     Button
-  },
-  props: {
-    someNum: Number,
-    buildingInstance: Object
   },
   data() {
     return {
@@ -65,9 +62,6 @@ export default {
   methods: {
     createButton() {
       console.log('create pressed');
-      this.building = this.buildingInstance.building;
-      this.buildingView = this.buildingInstance.buildingView;
-
       let buildingPlan = {
         numFloors: 4,
         numElevators: 2,
@@ -81,7 +75,7 @@ export default {
         elevator: {
           height: 30,
           width: 10,
-          spacing: 1,
+          spacing: 20,
           startHeight: 100,
           colour: ['#F00', '#0F0', '#00F']
         }
@@ -89,12 +83,15 @@ export default {
       let ret = this.menuController.create(buildingPlan, renderVals);
       this.building = ret.building;
       this.buildingView = ret.buildingView;
+      console.log(EventBus);
+      EventBus.$emit('building-created', this.buildingView);
     },
     startButton() {
       console.log('start pressed');
       this.menuController.start(this.building);
     },
     pauseButton() {
+      this.otherProperty = 99;
       let pause = this.buttons.find( (it) => { return it.key == "pauseButton" });
       let success = this.menuController.pause(this.building, pause.val.paused);
       pause.val.paused = success ? !pause.val.paused : pause.val.paused;

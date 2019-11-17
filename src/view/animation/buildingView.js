@@ -15,10 +15,14 @@ export default class BuildingView {
                 renderVals.elevator.colour[i % renderVals.elevator.colour.length]
                 ));
         }
+        console.log('my eleveators');
+        console.log(this.elevators);
     }
 
     render(ctx) {
-        for (let elevator in this.elevators) {
+        for (let elevator of this.elevators) {
+            console.log('elevator');
+            console.log(elevator);
             elevator.render(ctx);
         }
     }
