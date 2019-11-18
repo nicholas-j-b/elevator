@@ -1,17 +1,17 @@
-export default class ElevatorView {
-    constructor(scale, height, width, x, y, colour, master) {
+export default class FloorView {
+    constructor(scale, height, width, x, y, colour, lineMaster) {
         this.scale = scale || 1;
-        this.height = height * scale || 10 * scale;
-        this.width = width * scale || 4 * scale;
+        this.height = height * scale || 35 * scale;
+        this.width = width * scale || 100 * scale;
         this.x = x || 0;
         this.y = y || 0;
         this.colour = colour || '#F00';
         this.master = master;
-        this.persons = [];
+        this.line = new LineView(lineMaster);
     }
 
     updatePosition() {
-        this.y = this.master.y;
+
     }
 
     render(ctx) {
@@ -20,10 +20,5 @@ export default class ElevatorView {
         ctx.fillRect(this.x, this.y, this.width, this.height);
         this.renderPersons(ctx);
     }
-
-    renderPersons(ctx) {
-        for (let person of this.persons) {
-            person.render(ctx);
-        }
-    }
+    
 }
