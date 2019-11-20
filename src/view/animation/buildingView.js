@@ -4,6 +4,8 @@ export default class BuildingView {
     constructor(building, buildingPlan, renderVals) {
         this.building = building;
         this.plan = buildingPlan;
+        this.clock = null;
+
         this.elevators = [];
         for (let i = 0; i < buildingPlan.numElevators; i++) {
             this.elevators.push(new ElevatorView(
@@ -16,6 +18,18 @@ export default class BuildingView {
                 this.building.elevators[i]
                 ));
         }
+    }
+
+    update() {
+        this.building.update();
+
+        // update self
+
+        //this.render();
+    }
+
+    reset() {
+        this.building.reset();
     }
 
     render(ctx) {

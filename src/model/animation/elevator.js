@@ -56,4 +56,8 @@ export default class Elevator {
     debug_move() {
         this.y += this.speed;
     }
+
+    debug_reset() {
+        this.y = 0;
+    }
 }
