@@ -3,10 +3,6 @@ import BuildingView from "../view/animation/buildingView";
 
 export default class MenuController {
     create(buildingPlan, renderVals) {
-        console.log(buildingPlan);
-        console.log(renderVals);
-        console.log(this);
-
         let building = new Building(buildingPlan);
         let buildingView = new BuildingView(building, buildingPlan, renderVals)
         return {

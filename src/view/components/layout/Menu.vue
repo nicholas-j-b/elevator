@@ -61,13 +61,19 @@ export default {
   },
   methods: {
     createButton() {
-      console.log('create pressed');
       let buildingPlan = {
         numFloors: 4,
         numElevators: 2,
-        elevator: {
-          maxSpace: 10
-        }
+        elevators: [
+          {
+            maxSpace: 10,
+            speed: 1
+          },
+          {
+            maxSpace: 10,
+            speed: 2
+          }
+        ]
       };
 
       let renderVals = {
@@ -83,11 +89,9 @@ export default {
       let ret = this.menuController.create(buildingPlan, renderVals);
       this.building = ret.building;
       this.buildingView = ret.buildingView;
-      console.log(EventBus);
       EventBus.$emit('building-created', this.buildingView);
     },
     startButton() {
-      console.log('start pressed');
       this.menuController.start(this.building);
     },
     pauseButton() {

@@ -15,16 +15,19 @@ export default {
     },
     created() {
         EventBus.$on('building-created', this.setBuildingView);
+        EventBus.$on('animation-rerender', this.rerender);
     },
     methods: {
         setBuildingView(buildingView){
             this.buildingView = buildingView;
             this.buildingView.render(this.provider.context);
-            console.log('set building view');
+        },
+        rerender() {
+            this.provider.context.clearRect(0, 0, 100, 100);
+            this.buildingView.render(this.provider.context);
         }
     },
     render() {
-        console.log('body render');
         if (!this.provider.context) return null;
         if (!this.buildingView) return null;
         this.buildingView.render(this.provider.context);

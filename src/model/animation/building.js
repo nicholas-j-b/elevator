@@ -1,22 +1,22 @@
 import Elevator from "./elevator";
 import Line from "./line";
+import { EventBus } from "../../main";
 
 export default class Building {
-    constructor(args) {
+    constructor(buildingPlan) {
         this.timer = 0;
         this.clock = null;
         this.running = false;
-        this.numFloors = args.numFloors || 3;
-        this.numElevators = args.numElevators || 3;
-        this.elevatorMaxSpace = args.elevator.maxSpace || 10;
+        this.numFloors = buildingPlan.numFloors || 3;
+        this.numElevators = buildingPlan.numElevators || 3;
+        //this.elevatorMaxSpace = buildingPlan.elevator.maxSpace || 10;
         this.completedPersons = [];
 
-        console.log('debug point');
-
-        this.elevators = new Array(this.numElevators);
+        this.elevators = [];
         for (let i = 0; i < this.numElevators; i++) {
             this.elevators.push(new Elevator(this.numFloors, 0, 
-                this.elevatorMaxSpace, this.completedPersons));
+                buildingPlan.elevators[i].maxSpace, this.completedPersons,
+                buildingPlan.elevators[i].speed));
         }
 
         this.lines = new Array(this.numFloors);
@@ -83,11 +83,15 @@ export default class Building {
 
     mainLoop() {
         this.updateModel();
-        console.log(this.timer);
 
         this.timer += 1;
     }
 
     updateModel() {
+        for (let elevator of this.elevators) {
+            elevator.debug_move();
+        }
+
+        EventBus.$emit('animation-rerender');
     }
 }

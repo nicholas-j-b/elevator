@@ -11,7 +11,6 @@
         :size="size"
     ></Body></animation-field>
 
-    <button @click="click()">debug</button>
 </div>
 </template>
 
@@ -33,11 +32,6 @@ export default {
         return {
             title: "Elevator App",
             size: 3,
-        }
-    },
-    methods: {
-        click() {
-            console.log('click');
         }
     }
 }
