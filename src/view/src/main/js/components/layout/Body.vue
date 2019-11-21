@@ -1,5 +1,5 @@
 <script>
-import { EventBus } from '../../../main';
+import { EventBus } from '../../../../../../main'
 
 export default {
     inject: ['provider'],
