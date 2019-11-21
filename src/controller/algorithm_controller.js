@@ -1,8 +1,4 @@
 export default class AlgorithmController {
-    static updateModel(building) {
-        return building.update();
-    }
-
     static loadAllPossible(building, elevator, direction) {
         return building.loadAllPossible(elevator, direction);
     }
