@@ -1,5 +1,5 @@
-import Building from "../model/animation/building";
-import BuildingView from "../view/animation/buildingView";
+import Building from '../../../../model/src/main/js/animation/building'
+import BuildingView from '../../../../view/src/main/js/animation/buildingView'
 import TimingController from "./timing_controller";
 
 export default class MenuController {

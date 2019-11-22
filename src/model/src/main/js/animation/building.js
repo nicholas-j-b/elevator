@@ -1,6 +1,6 @@
 import Elevator from "./elevator";
 import Line from "./line";
-import { EventBus } from "../../main";
+import { EventBus } from '../../../../../main'
 
 export default class Building {
     constructor(buildingPlan) {

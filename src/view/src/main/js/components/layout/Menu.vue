@@ -10,10 +10,10 @@
 </template>
 
 <script>
-//import Building from "../../../model/animation/building.js";
-import Button from "../control/buttons/Button.vue";
-import MenuController from "../../../controller/menu_controller.js";
-import { EventBus } from '../../../main'
+import MenuController from '../../../../../../controller/src/main/js/menu_controller'
+//import Building from '../../../../../../model/src/main/js/animation/building'
+import Button from "../control/buttons/Button"
+import { EventBus } from '../../../../../../main'
 
 export default {
   name: "Menu",
