@@ -7,7 +7,6 @@ export default class Building {
         this.time = 0;
         this.numFloors = buildingPlan.numFloors || 3;
         this.numElevators = buildingPlan.numElevators || 3;
-        //this.elevatorMaxSpace = buildingPlan.elevator.maxSpace || 10;
         this.completedPersons = [];
 
         this.elevators = [];
@@ -35,13 +34,12 @@ export default class Building {
         var floor = elevator.currentFloor;
         var numCanLoad = elevator.space;
         var personsToLoad = this.lines[floor].getPersonsToLoad(elevator.direction, numCanLoad);
-        elevator.load(personsToLoad);
+        return elevator.load(personsToLoad);
     }
 
     unloadElevator(elevator) {
         elevator.unload()
     }
-
 
     reset() {
         this.time = 0;
@@ -58,4 +56,22 @@ export default class Building {
         EventBus.$emit('animation-rerender');
         this.time += 1;
     }
+
+    loadAllPossible(elevatorIndex) {
+        let elevator = this.elevators[elevatorIndex];
+        return this.loadElevator(elevator);
+    }
+
+    unloadAllAtDestination(elevator) {
+        return this.unloadElevator(elevator);
+    }
+
+    setTargetFloor(elevator, targetFloor) {
+        if (this.targetFloor == targetFloor) {
+            return false;
+        }
+        this.targetFloor = targetFloor;
+        return true;
+    }
+
 }
