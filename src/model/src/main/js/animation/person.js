@@ -1,9 +1,10 @@
 export default class Person {
-    totalTime = null;
 
     constructor(startFloor, desiredFloor, startTime) {
-        this.startFloot = startFloor;
+        this.startFloor = startFloor;
         this.desiredFloor = desiredFloor;
         this.startTime = startTime;
+
+        this.totalTime = null;
     }
 }

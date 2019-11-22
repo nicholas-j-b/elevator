@@ -2,7 +2,6 @@ import { Direction } from '../config/cfg.js';
 
 export default class Elevator {
     constructor(upperLimit, lowerLimit, maxSpace, completedPersons, speed) {
-
         this.upperLimit = upperLimit;
         this.lowerLimit = lowerLimit;
         this.maxSpace = maxSpace;
@@ -13,31 +12,42 @@ export default class Elevator {
         this.speed = speed;
         this.y = 0;
         this.x = 0;
+        this.busy = false;
     }
 
     load(personsToLoad) {
+        if (this.busy) { return null; }
+        let numberLoaded = 0
         for (let person in personsToLoad){
-            this.persons.add(person);
+            if (this.space > 0) {
+                this.persons.add(person)
+                numberLoaded += 1;
+            }
         }
+        return numberLoaded;
     }
 
     unload() {
+        if (this.busy) { return null; }
+        let numberUnloaded = 0;
         this.persons.forEach(
             (person) => {
                 if (this.currentFloor == person.desiredFloor) {
                     this.completedPersons.push(person);
                     this.persons.delete(person);
+                    numberUnloaded += 1;
                 }
             }
         )
+        return numberUnloaded;
     }
 
     move() {
-        if (this.currentDirection == Direction.UP) {
-            this.currentFloor += 1;
-        } else {
-            this.currentFloor -= 1;
-        }
+        //if (this.currentDirection == Direction.UP) {
+            //this.currentFloor += 1;
+        //} else {
+            //this.currentFloor -= 1;
+        //}
     }
 
     set desiredFloor(newFloor) {

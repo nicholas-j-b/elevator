@@ -8,7 +8,7 @@ export default class Line {
         this.persons[Direction.DOWN] = [];
     }
 
-    accept_person(start, desired, startTime) {
+    newPersonJoinsTheLine(start, desired, startTime) {
         var key;
         if (start > desired) {
             key = Direction.DOWN;
