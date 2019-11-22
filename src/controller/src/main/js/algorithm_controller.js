@@ -11,7 +11,7 @@ export default class AlgorithmController {
         return building.setTargetFloor(elevator, floor);
     }
 
-    static setElevatorDirection(building, direction) {
+    static setElevatorDirection(building, elevator, direction) {
         return building.setElevatorDirection(elevator, direction);
     }
 }

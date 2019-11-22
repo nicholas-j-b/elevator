@@ -1,6 +1,8 @@
+import { Direction } from "../../../../model/src/main/js/config/cfg";
+
 export default class ElevatorAlgorithm {
-    setup() {
-        throw new Error("This is an abstract function!");
+    constructor() {
+        this._direction = Direction;
     }
 
     entryPoint() {
