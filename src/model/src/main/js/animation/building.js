@@ -58,4 +58,8 @@ export default class Building {
         EventBus.$emit('animation-rerender');
         this.time += 1;
     }
+
+    debug_test_function(x) {
+        return x;
+    }
 }
