@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test": "jest"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
@@ -21,9 +22,11 @@
     "@vue/cli-plugin-eslint": "^4.0.0",
     "@vue/cli-service": "^4.0.0",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
     "bootstrap": "^4.3.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "jest": "^24.9.0",
     "mutationobserver-shim": "^0.3.3",
     "node-sass": "^4.12.0",
     "popper.js": "^1.15.0",
@@ -43,7 +46,14 @@
     ],
     "rules": {
       "no-console": "off",
-       "no-unused-vars": ["error", { "vars": "local", "args": "after-used", "ignoreRestSiblings": false }]
+      "no-unused-vars": [
+        "error",
+        {
+          "vars": "local",
+          "args": "after-used",
+          "ignoreRestSiblings": false
+        }
+      ]
     },
     "parserOptions": {
       "parser": "babel-eslint"
