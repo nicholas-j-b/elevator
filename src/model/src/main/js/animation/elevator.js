@@ -18,7 +18,7 @@ export default class Elevator {
     load(personsToLoad) {
         if (this.busy) { return null; }
         let numberLoaded = 0
-        for (let person in personsToLoad){
+        for (let person of personsToLoad){
             if (this.space > 0) {
                 this.persons.add(person)
                 numberLoaded += 1;
@@ -33,7 +33,7 @@ export default class Elevator {
         this.persons.forEach(
             (person) => {
                 if (this.currentFloor == person.desiredFloor) {
-                    this.completedPersons.push(person);
+                    this.completedPersons.add(person);
                     this.persons.delete(person);
                     numberUnloaded += 1;
                 }
@@ -69,5 +69,9 @@ export default class Elevator {
 
     debug_reset() {
         this.y = 0;
+    }
+
+    debug_test(x) {
+        return x;
     }
 }
