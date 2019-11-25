@@ -1,26 +1,33 @@
 import Building from '../../../../model/src/main/js/animation/building'
 import BuildingView from '../../../../view/src/main/js/animation/buildingView'
 import TimingController from "./timing_controller";
+import TimingService from './timing_service';
 
 export default class MenuController {
-    static create(buildingPlan, renderVals) {
+    static create(buildingPlan, renderVals, algorithmService, algorithm) {
         let building = new Building(buildingPlan);
         let buildingView = new BuildingView(building, buildingPlan, renderVals)
+        let timingService = new TimingService(buildingView, algorithmService, algorithm)
         return {
             building: building,
-            buildingView: buildingView
+            buildingView: buildingView,
+            timingObject: {
+                timingService: timingService,
+                clock: null,
+                running: false
+            }
         };
     }
 
-    static start(buildingView) {
-        return TimingController.start(buildingView);
+    static start(timingObject) {
+        TimingController.start(timingObject);
     }
 
-    static stop(timingObject, buildingView) {
-        TimingController.stop(timingObject, buildingView);
+    static stop(timingObject)  {
+        TimingController.stop(timingObject);
     }
 
-    static pause(timingObject, buildingView, paused) {
-        return TimingController.pause(timingObject, buildingView, paused);
+    static pause(timingObject, paused) {
+        return TimingController.pause(timingObject, paused);
     }
 }

@@ -6,7 +6,8 @@ export default class ElevatorAlgorithm {
         this.algorithmService = algorithmService
     }
 
-    entryPoint() {
+    update(statusDto) {
+        console.log(statusDto);
         throw new Error("This is an abstract function!");
     }
 }

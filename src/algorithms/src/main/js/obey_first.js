@@ -72,18 +72,18 @@ export default class ObeyFirst extends ElevatorAlgorithm {
     }
 
     enactElevatorGoal(elevator) {
-        if (!elevator.load.complete) {
+        if (!elevator.goal.load.complete) {
             if (elevator.currentFloor == elevator.goal.load.floor) {
                 this.algorithmService.loadAllPossible(elevator);
             } else {
-                this.algorithmService.setTargetFloor(elevator.goal.load.floor);
+                this.algorithmService.setTargetFloor(elevator, elevator.goal.load.floor);
             }
         } else {
             if (elevator.currentFloor == elevator.goal.unload.floor) {
                 this.algorithmService.unloadAllAtDestination(elevator);
                 elevator.goal.workingOn = false;
             } else {
-                this.algorithmService.setTargetFloor(elevator.goal.unload.floor);
+                this.algorithmService.setTargetFloor(elevator, elevator.goal.unload.floor);
             }
         }
     }

@@ -23,3 +23,7 @@ export const DEFAULT_BUILDING_PLAN = {
         speed: 2
     }
 };
+
+export const DEFAULT_SETUP_DTO = {
+    elevators: []
+}

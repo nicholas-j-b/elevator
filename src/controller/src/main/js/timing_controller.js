@@ -1,14 +1,11 @@
 export default class TimingController {
-    static startTimer(buildingView) {
-        let clock = setInterval(() => { buildingView.update() }, 100);
-        return {
-            clock: clock,
-            running: true
-        }
+    static startTimer(timingObject) {
+        timingObject.clock = setInterval(() => { timingObject.timingService.update() }, 100);
+        timingObject.running = true;
     }
 
-    static resumeTimer(timingObject, buildingView) {
-        timingObject.clock = setInterval(() => { buildingView.update() }, 100);
+    static resumeTimer(timingObject) {
+        timingObject.clock = setInterval(() => { timingObject.timingService.update() }, 100);
         timingObject.running = true;
     }
 
@@ -19,13 +16,13 @@ export default class TimingController {
 
     static start(timingObject) {
         if (!timingObject.clock) {
-            return this.startTimer(timingObject);
+            this.startTimer(timingObject);
         }
     }
 
-    static pause(timingObject, buildingView, paused) {
+    static pause(timingObject, paused) {
         if (paused && timingObject.clock && !timingObject.running) {
-            this.resumeTimer(timingObject, buildingView);
+            this.resumeTimer(timingObject);
             return true;
         } else if (timingObject.clock && timingObject.running) {
             this.stopTimer(timingObject);
@@ -34,9 +31,9 @@ export default class TimingController {
         return false;
     }
 
-    static stop(timingObject, buildingView) {
+    static stop(timingObject) {
         this.stopTimer(timingObject);
         timingObject.clock = null;
-        buildingView.reset()
+        timingObject.timingService.reset()
     }
 }

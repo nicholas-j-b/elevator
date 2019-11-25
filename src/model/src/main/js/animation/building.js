@@ -74,4 +74,7 @@ export default class Building {
         return true;
     }
 
+    getStatus() {
+        return {};
+    }
 }
