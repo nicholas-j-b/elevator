@@ -1,10 +1,10 @@
 import { Direction } from '../config/cfg.js';
 
 export default class Elevator {
-    constructor(upperLimit, lowerLimit, maxSpace, completedPersons, speed) {
+    constructor(upperLimit, lowerLimit, capacity, completedPersons, speed) {
         this.upperLimit = upperLimit;
         this.lowerLimit = lowerLimit;
-        this.maxSpace = maxSpace;
+        this.capacity = capacity;
         this.persons = new Set(); // objects of { people, ...}
         this.currentFloor = 0;
         this.currentDirection = Direction.UP;
@@ -60,7 +60,7 @@ export default class Elevator {
     }
 
     get space() {
-        return this.maxSpace - this.numPeople;
+        return this.capacity - this.numPeople;
     }
 
     debug_move() {

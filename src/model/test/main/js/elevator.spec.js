@@ -19,7 +19,7 @@ describe('Elevator-Model', function() {
     })
     describe('Loading', function() {
         beforeAll(function() {
-            elevator.maxSpace = 10;
+            elevator.capacity = 10;
             elevator.busy = false;
         })
         it('Load passengers', function() {

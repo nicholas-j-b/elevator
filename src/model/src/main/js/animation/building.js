@@ -12,7 +12,7 @@ export default class Building {
         this.elevators = [];
         for (let i = 0; i < this.numElevators; i++) {
             this.elevators.push(new Elevator(this.numFloors, 0, 
-                buildingPlan.elevators[i].maxSpace, this.completedPersons,
+                buildingPlan.elevators[i].capacity, this.completedPersons,
                 buildingPlan.elevators[i].speed));
         }
 
@@ -74,4 +74,7 @@ export default class Building {
         return true;
     }
 
+    getStatus() {
+        return {};
+    }
 }
