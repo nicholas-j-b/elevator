@@ -11,9 +11,11 @@
 
 <script>
 import MenuController from '../../../../../../controller/src/main/js/menu_controller'
-//import Building from '../../../../../../model/src/main/js/animation/building'
 import Button from "../control/buttons/Button"
 import { EventBus } from '../../../../../../main'
+import { DEFAULT_BUILDING_PLAN, DEFAULT_RENDER_VALS } from '../../config/cfg'
+import AlgorithmService from '../../../../../../algorithms/src/main/js/algorithm_service'
+import ObeyFirst from '../../../../../../algorithms/src/main/js/obey_first'
 
 export default {
   name: "Menu",
@@ -23,6 +25,9 @@ export default {
   data() {
     return {
       timingObject: Object,
+      buildingPlan: DEFAULT_BUILDING_PLAN,
+      renderVals: Object,
+      setupDto: Object,
 
       buttons: [
         {
@@ -60,43 +65,42 @@ export default {
     };
   },
   methods: {
-    createButton() {
-      let buildingPlan = {
-        numFloors: 4,
-        numElevators: 2,
-        elevators: [
-          {
-            maxSpace: 10,
-            speed: 1
-          },
-          {
-            maxSpace: 10,
-            speed: 2
-          }
-        ]
-      };
+    loadDefaults() {
+      this.buildingPlan = DEFAULT_BUILDING_PLAN;
+      console.log(this);
+      for (let i = 0; i < this.buildingPlan.numElevators; i++) {
+        this.buildingPlan.elevators.push(DEFAULT_BUILDING_PLAN.DEFAULT_ELEVATOR)
+      }
+      this.renderVals = DEFAULT_RENDER_VALS;
+    },
+    createSetupDto() {
+      this.setupDto.elevators = [];
+      for (let elevator of this.buildingPlan.elevators) {
+        this.setupDto['elevators'].push({
+          currentFloor: elevator.currentFloor,
+          maxFloor: elevator.maxFloor,
+          minFloor: elevator.minFloor,
+          capacity: elevator.capacity,
+        })
+      }
+    },
 
-      let renderVals = {
-        scale: 1,
-        elevator: {
-          height: 30,
-          width: 10,
-          spacing: 20,
-          startHeight: 100,
-          colour: ['#F00', '#0F0', '#00F']
-        }
-      };
-      let ret = MenuController.create(buildingPlan, renderVals);
+    createButton() {
+      this.loadDefaults()
+      this.createSetupDto()
+      let ret = MenuController.create(this.buildingPlan, this.renderVals);
       this.building = ret.building;
       this.buildingView = ret.buildingView;
       EventBus.$emit('building-created', this.buildingView);
+      this.algorithmService = new AlgorithmService(this.building)
+      this.algorithm = new ObeyFirst(this.setupDto, this.algorithmService)
     },
     startButton() {
       this.timingObject = MenuController.start(this.buildingView);
     },
     pauseButton() {
       if (!this.timingObject) { return null; }
-      let pause = this.buttons.find( (it) => { return it.key == "pauseButton" });
+      let pause = this.buttons.find((it) => { return it.key == "pauseButton" });
       let success = MenuController.pause(this.timingObject, this.buildingView, pause.val.paused);
       pause.val.paused = success ? !pause.val.paused : pause.val.paused;
     },

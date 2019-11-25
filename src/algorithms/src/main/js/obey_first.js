@@ -1,11 +1,12 @@
+import ElevatorAlgorithm from './elevator_algorithm'
+
 export default class ObeyFirst extends ElevatorAlgorithm {
     constructor(setupDto, algorithmService) {
-        super();
-        this.algorithmService = algorithmService
+        super(algorithmService);
         this.elevators = [];
         for (let elevator of setupDto.elevators) {
             this.elevators.push({
-                currentFloor = elevator.currentFloor,
+                currentFloor: elevator.currentFloor,
                 minFloor: elevator.minFloor,
                 maxFloor: elevator.maxFloor,
                 capacity: elevator.capacity,
@@ -28,11 +29,11 @@ export default class ObeyFirst extends ElevatorAlgorithm {
     }
 
     interpretStatus(statusDto) {
-
+        console.log(statusDto);
     }
 
     announceDirection(elevator) {
-        direction = elevator.goal.load.floor > elevator.goal.unload.floor ? this._direction.DOWN : this._direction.UP;
+        let direction = elevator.goal.load.floor > elevator.goal.unload.floor ? this._direction.DOWN : this._direction.UP;
         this.algorithmService.setElevatorDirection(elevator, direction);
     }
 
@@ -42,13 +43,14 @@ export default class ObeyFirst extends ElevatorAlgorithm {
                 workingOn: true,
                 load: {
                     complete: true,
-                    floor = null
+                    floor: null
                 },
                 unload: {
                     complete: false,
                     floor: elevator.persons[0].desiredFloor
                 }
             }
+            return goal;
         } else if (this.persons.length == 0) {
             return elevator.goal;
         } else {
@@ -65,6 +67,7 @@ export default class ObeyFirst extends ElevatorAlgorithm {
                 }
             }
             this.announceDirection(elevator);
+            return goal;
         }
     }
 
