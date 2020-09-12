@@ -1,5 +1,7 @@
 # elevator
 
+An elevator simulation
+
 ## Project setup
 ```
 npm install
